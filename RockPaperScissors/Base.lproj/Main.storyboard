@@ -44,6 +44,7 @@
                                 </state>
                                 <connections>
                                     <action selector="makeYourMove:" destination="iYZ-Mq-4iF" eventType="touchUpInside" id="BZl-Sp-uVr"/>
+                                    <segue destination="7l5-Gp-aIR" kind="modal" identifier="throwDownPaper" id="71z-Uh-ORo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pQ-vK-SEv">
@@ -60,7 +61,7 @@
                                 <rect key="frame" x="182" y="809" width="50" height="30"/>
                                 <state key="normal" title="History"/>
                                 <connections>
-                                    <segue destination="Oyk-2w-Af8" kind="modal" id="0E0-Yn-K9B"/>
+                                    <action selector="showHistory:" destination="iYZ-Mq-4iF" eventType="touchUpInside" id="gMe-mH-z3C"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,7 +84,7 @@
                         <outlet property="paperButton" destination="Ay7-rG-oQ3" id="W20-lL-iti"/>
                         <outlet property="rockButton" destination="2pQ-vK-SEv" id="dpm-25-xrO"/>
                         <outlet property="scissorsButton" destination="kDr-vO-WkA" id="3bC-0b-DYi"/>
-                        <segue destination="7l5-Gp-aIR" kind="modal" identifier="throwDownPaper" id="VKf-O8-YvW"/>
+                        <segue destination="Oyk-2w-Af8" kind="modal" identifier="showHistory" id="29t-Qr-yK4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AH7-9D-0G1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,25 +155,24 @@
         <!--HistoryViewController-->
         <scene sceneID="pqw-0Y-hNq">
             <objects>
-                <viewController title="HistoryViewController" id="Oyk-2w-Af8" customClass="HistoryViewController" customModule="RockPaperScissors" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" title="HistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oyk-2w-Af8" customClass="HistoryViewController" customModule="RockPaperScissors" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8wM-qX-SH6"/>
                         <viewControllerLayoutGuide type="bottom" id="NjS-7p-BM9"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Icj-s5-SUb" customClass="HistoryViewController">
+                    <view key="view" contentMode="scaleToFill" id="Icj-s5-SUb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K3m-8E-ibY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K3m-8E-ibY">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" id="qke-6T-jK3">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qke-6T-jK3" id="Y4P-dW-9J1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="HistoryCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qke-6T-jK3" id="Y4P-dW-9J1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -181,13 +181,26 @@
                                     <outlet property="dataSource" destination="Oyk-2w-Af8" id="Wz5-oD-0KT"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbA-3w-MSd">
+                                <rect key="frame" x="192" y="8" width="30" height="30"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="dismissHistory:" destination="Oyk-2w-Af8" eventType="touchUpInside" id="MCH-xL-fvQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <connections>
-                            <outlet property="tableView" destination="K3m-8E-ibY" id="Nwr-tG-uRa"/>
-                        </connections>
+                        <constraints>
+                            <constraint firstItem="K3m-8E-ibY" firstAttribute="top" secondItem="ZbA-3w-MSd" secondAttribute="bottom" constant="6" id="TmI-Ee-QzG"/>
+                            <constraint firstItem="ZbA-3w-MSd" firstAttribute="centerX" secondItem="K3m-8E-ibY" secondAttribute="centerX" id="WK8-mR-8dY"/>
+                            <constraint firstItem="ZbA-3w-MSd" firstAttribute="centerX" secondItem="Icj-s5-SUb" secondAttribute="centerX" id="ZhJ-Q2-uxO"/>
+                            <constraint firstItem="ZbA-3w-MSd" firstAttribute="top" secondItem="8wM-qX-SH6" secondAttribute="bottom" constant="8" id="eEC-Lf-0Mk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IAW-Og-izx"/>
+                    <connections>
+                        <outlet property="tableView" destination="K3m-8E-ibY" id="R0H-mg-YBg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YcW-bd-KTt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -195,7 +208,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VKf-O8-YvW"/>
+        <segue reference="71z-Uh-ORo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paper" width="75" height="65"/>

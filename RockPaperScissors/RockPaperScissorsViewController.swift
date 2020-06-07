@@ -79,20 +79,33 @@ class RockPaperScissorsViewController: UIViewController {
             self.present(resultVC, animated: true, completion: nil)
         }
         
+        /*
         // 2nd Way: Code plus Segue
         else if (playersMove == RPS.paper) {
             performSegue(withIdentifier: "throwDownPaper", sender: self)
         }
+        */
         
         // 3rd Way: Segue Only, No code!
         // But don't forget to implement prepareForSegue.
     }
 
     // MARK: Segue
-    
+
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //Notice that this code works for both Scissors and Paper
-        let controller = segue.destination as! ResultViewController
-        controller.match = self.match
+        if segue.identifier == "throwDownScissors" {
+            let controller = segue.destination as! ResultViewController
+            controller.match = self.match
+        }
+        
+        else if segue.identifier == "throwDownPaper" {
+            let controller = segue.destination as! ResultViewController
+            controller.match = self.match
+        
+        } else {
+            _ = segue.destination as! HistoryViewController
+        }
     }
 }

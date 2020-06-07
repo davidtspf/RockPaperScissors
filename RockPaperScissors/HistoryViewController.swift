@@ -9,17 +9,26 @@
 import Foundation
 import UIKit
 
-class HistoryViewController: UIViewController, UITableViewDataSource {
+// MARK: - HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: Properties
     
     var history: [RPSMatch]!
     
+    // MARK: Outlet
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Table View Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return history.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let CellID = "HistoryCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID, for: indexPath)
