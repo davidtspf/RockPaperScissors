@@ -79,15 +79,6 @@ class RockPaperScissorsViewController: UIViewController {
             self.present(resultVC, animated: true, completion: nil)
         }
         
-        /*
-        // 2nd Way: Code plus Segue
-        else if (playersMove == RPS.paper) {
-            performSegue(withIdentifier: "throwDownPaper", sender: self)
-        }
-        */
-        
-        // 3rd Way: Segue Only, No code!
-        // But don't forget to implement prepareForSegue.
     }
 
     // MARK: Segue
