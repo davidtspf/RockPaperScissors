@@ -45,15 +45,6 @@ class RockPaperScissorsViewController: UIViewController {
         }
     }
     
-    @IBAction func showHistory(_ sender: AnyObject) {
-        let storyboard = self.storyboard
-        let controller = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as! HistoryViewController
-        
-        controller.history = self.history
-        
-        self.present(controller, animated: true, completion: nil)
-    }
-    
     // MARK: Play!
     
     func throwDown(_ playersMove: RPS) {
@@ -65,8 +56,6 @@ class RockPaperScissorsViewController: UIViewController {
         
         // Here we add a match to the history array. 
         history.append(match)
-        
-        //Here are the 3 ways of presenting a View Controller
         
         // 1st Way: Programmatic View Controller Presentation
         if (playersMove == RPS.rock) {
@@ -83,7 +72,6 @@ class RockPaperScissorsViewController: UIViewController {
 
     // MARK: Segue
 
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //Notice that this code works for both Scissors and Paper
         if segue.identifier == "throwDownScissors" {
@@ -95,8 +83,22 @@ class RockPaperScissorsViewController: UIViewController {
             let controller = segue.destination as! ResultViewController
             controller.match = self.match
         
-        } else {
-            _ = segue.destination as! HistoryViewController
-        }
+        } /* else {
+            let controller = segue.destination as! HistoryViewController
+            controller.history = self.history
+            self.present(controller, animated: true, completion: nil)
+        } */
     }
+    
+    // MARK: Actions
+    @IBAction func showHistory(_ sender: AnyObject) {
+        let storyboard = self.storyboard
+        let controller = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as! HistoryViewController
+        
+        controller.history = self.history
+        
+        self.present(controller, animated: true, completion: nil)
+    }
+
 }
+
