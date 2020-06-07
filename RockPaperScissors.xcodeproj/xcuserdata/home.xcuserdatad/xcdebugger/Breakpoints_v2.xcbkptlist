@@ -44,7 +44,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "863EBA90-8450-497E-8BC6-E14D4FA1C2C9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RockPaperScissors/HistoryViewController.swift"
