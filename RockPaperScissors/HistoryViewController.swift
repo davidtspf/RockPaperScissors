@@ -35,7 +35,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let match = self.history[(indexPath as NSIndexPath).row]
         
-        cell.textLabel?.text = victoryStatusDescription(match)
+        cell.textLabel!.text = victoryStatusDescription(match)
         cell.detailTextLabel?.text = "\(match.p1) vs. \(match.p2)"
         
         return cell
